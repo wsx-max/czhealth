@@ -42,9 +42,24 @@ public class CheckItemController {
 
     //删除检查项
     @PostMapping("/deleteById")
-    public Result deleteById(Integer id) {
+    public Result deleteById(int id) {
         checkItemService.deleteById(id);
         return new Result(true, MessageConstant.DELETE_CHECKITEM_SUCCESS);
+    }
+
+    //根据id查询检查项
+    @PostMapping("/findById")
+    public Result findById(int id) {
+        CheckItem checkItem = checkItemService.findById(id);
+        return new Result(true,MessageConstant.QUERY_CHECKITEM_SUCCESS,checkItem);
+    }
+
+    //更新检查项
+    @PostMapping("/update")
+    public Result update(@RequestBody CheckItem checkItem){
+        checkItemService.update(checkItem);
+
+        return new Result(true,MessageConstant.EDIT_CHECKITEM_SUCCESS);
     }
 }
 
