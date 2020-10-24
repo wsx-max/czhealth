@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.itheima.health.dao.CheckItemDao">
+    <!--查询所有-->
     <select id="findAll" resultType="CheckItem">
         select * from t_checkitem
     </select>
@@ -14,4 +15,35 @@
         (#{code},#{name},#{sex},#{age},#{price},#{type},#{remark},#{attention})
     </insert>
 
+    <!--条件查询-->
+    <select id="findByCondition" parameterType="string" resultType="CheckItem">
+        select * from t_checkitem
+        <if test="value !=null and value.length > 0">
+            where code like #{value} or name like #{value}
+        </if>
+    </select>
+
+    <!--删除-->
+    <delete id="deleteById" parameterType="integer">
+        delete from t_checkItem where id = #{id}
+    </delete>
+
+    <!--检查 检查项是否被检查组使用了-->
+    <select id="findCountByCheckItemId" parameterType="integer" resultType="integer">
+        select count(1) from t_checkgroup_checkitem where checkitem_id=#{id}
+    </select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

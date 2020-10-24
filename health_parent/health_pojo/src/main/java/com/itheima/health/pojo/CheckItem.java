@@ -87,4 +87,10 @@ public class CheckItem implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
+
+
 }
+
+
+
+
