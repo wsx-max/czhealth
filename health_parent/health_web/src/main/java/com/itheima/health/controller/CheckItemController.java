@@ -58,7 +58,6 @@ public class CheckItemController {
     @PostMapping("/update")
     public Result update(@RequestBody CheckItem checkItem){
         checkItemService.update(checkItem);
-
         return new Result(true,MessageConstant.EDIT_CHECKITEM_SUCCESS);
     }
 }
