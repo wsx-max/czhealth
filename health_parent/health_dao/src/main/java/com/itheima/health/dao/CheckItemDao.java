@@ -8,7 +8,7 @@ import java.util.List;
 public interface CheckItemDao {
     List<CheckItem> findAll();
 
-    int add(CheckItem checkItem);
+    void add(CheckItem checkItem);
 
     Page<CheckItem> findByCondition(String queryString);
 

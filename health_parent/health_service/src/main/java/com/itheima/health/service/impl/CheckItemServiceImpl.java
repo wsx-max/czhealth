@@ -12,8 +12,6 @@ import com.itheima.health.exception.HealthException;
 import com.itheima.health.pojo.CheckItem;
 import com.itheima.health.service.CheckItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service(interfaceClass = CheckItemService.class)
@@ -30,9 +28,8 @@ public class CheckItemServiceImpl implements CheckItemService {
 
     //添加检查项
     @Override
-    public boolean add(CheckItem checkItem) {
-        int cnt = checkItemDao.add(checkItem);
-        return cnt > 0;
+    public void add(CheckItem checkItem) {
+        checkItemDao.add(checkItem);
     }
 
     //分页查询检查项
@@ -55,7 +52,7 @@ public class CheckItemServiceImpl implements CheckItemService {
 
     //删除检查项
     @Override
-    public boolean deleteById(Integer id) throws HealthException {
+    public void deleteById(Integer id) throws HealthException {
         //判断该检查项是否被检查组使用
         //查询t_checkgroup_checkitem
         int cnt = checkItemDao.findCountByCheckItemId(id);
@@ -63,8 +60,7 @@ public class CheckItemServiceImpl implements CheckItemService {
             // 已经被检查组使用了，则不能删除，报错
             throw new HealthException(MessageConstant.CHECKITEM_IN_USE);
         }
-        int deleteById = checkItemDao.deleteById(id);
-        return deleteById > 0;
+        checkItemDao.deleteById(id);
     }
 }
 

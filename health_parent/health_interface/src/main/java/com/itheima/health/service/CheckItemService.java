@@ -10,9 +10,9 @@ import java.util.List;
 public interface CheckItemService {
     List<CheckItem> findAll();
 
-    boolean add(CheckItem checkItem);
+    void add(CheckItem checkItem);
 
     PageResult<CheckItem> findPage(QueryPageBean queryPageBean);
 
-    boolean deleteById(Integer id) throws HealthException;
+    void deleteById(Integer id) throws HealthException;
 }
