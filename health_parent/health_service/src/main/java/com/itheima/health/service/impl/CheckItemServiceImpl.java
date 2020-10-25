@@ -12,6 +12,8 @@ import com.itheima.health.exception.HealthException;
 import com.itheima.health.pojo.CheckItem;
 import com.itheima.health.service.CheckItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service(interfaceClass = CheckItemService.class)
@@ -52,6 +54,7 @@ public class CheckItemServiceImpl implements CheckItemService {
 
     //删除检查项
     @Override
+    @Transactional
     public void deleteById(Integer id) throws HealthException {
         //判断该检查项是否被检查组使用
         //查询t_checkgroup_checkitem

@@ -3,8 +3,21 @@ package com.itheima.health.pojo;
 import java.io.Serializable;
 import java.util.List;
 
+
 /**
  * 检查组
+ *
+ *
+ *
+ *  private Integer   ;//主键
+ *     private String ;//编码
+ *     private String ;//名称
+ *     private String ;//助记
+ *     private String ;//适用性别
+ *     private String ;//介绍
+ *     private String ;//注意事项
+ *
+ *
  */
 public class CheckGroup implements Serializable {
     private Integer id;//主键
