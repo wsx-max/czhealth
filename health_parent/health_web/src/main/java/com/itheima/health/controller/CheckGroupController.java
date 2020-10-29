@@ -73,6 +73,16 @@ public class CheckGroupController {
         return new Result(true, MessageConstant.DELETE_CHECKGROUP_SUCCESS);
     }
 
+    //查询所有检查组
+    @GetMapping("/findAll")
+    public Result findAll(){
+        //调用业务层
+        List<CheckGroup> groupList = checkGroupService.findAll();
+        //响应结果
+        return new Result(true,MessageConstant.QUERY_CHECKGROUP_SUCCESS,groupList);
+
+    }
+
 
 }
 

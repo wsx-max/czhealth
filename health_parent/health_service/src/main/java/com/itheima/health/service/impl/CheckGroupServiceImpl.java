@@ -84,7 +84,7 @@ public class CheckGroupServiceImpl implements CheckGroupService {
     //根据id删除检查组
     @Override
     @Transactional
-    public void deleteById(int id) throws HealthException {
+    public void deleteById(int id){
         //判断该检查组是否被套餐使用
         //查询t_setmeal_checkgroup
         int cnt = checkGroupDao.findCountByCheckGroupId(id);
@@ -96,6 +96,11 @@ public class CheckGroupServiceImpl implements CheckGroupService {
         // 先删除检查组与检查项的关系
         checkGroupDao.deleteCheckGroupCheckItem(id);
         checkGroupDao.deleteById(id);
+    }
+
+    @Override
+    public List<CheckGroup> findAll() {
+        return checkGroupDao.findAll();
     }
 }
 

@@ -1,15 +1,12 @@
-package com.itheima;
+package com.itheima.health;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 
-public class ProviderApplication {
-
+public class qiniuApplication {
     public static void main(String[] args) throws IOException {
-
-        new ClassPathXmlApplicationContext("classpath:applicationContext-service.xml");
-
+        new ClassPathXmlApplicationContext("classpath:spring-jobs.xml");
         System.in.read();
     }
 }
