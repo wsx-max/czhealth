@@ -10,6 +10,7 @@ import com.itheima.health.entity.QueryPageBean;
 import com.itheima.health.exception.HealthException;
 import com.itheima.health.pojo.Setmeal;
 import com.itheima.health.service.SetmealService;
+import com.itheima.health.utils.QiNiuUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -103,6 +104,21 @@ public class SetmealServiceImpl implements SetmealService {
     @Override
     public List<String> findImgs() {
         return setmealDao.findImgs();
+    }
+
+    //查询所有套餐
+    @Override
+    public List<Setmeal> findAll() {
+        List<Setmeal> list =  setmealDao.findAll();
+        list.stream().forEach(setmeal -> {setmeal.setImg(QiNiuUtils.DOMAIN+setmeal.getImg());});
+        return list;
+    }
+
+    //查询套餐详情
+    @Override
+    public Setmeal findDetailById(int id) {
+        Setmeal detailById = setmealDao.findDetailById(id);
+        return detailById;
     }
 }
 

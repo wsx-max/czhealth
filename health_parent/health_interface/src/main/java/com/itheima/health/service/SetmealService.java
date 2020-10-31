@@ -29,4 +29,10 @@ public interface SetmealService {
 
     //查询所有图片名称
     List<String> findImgs();
+
+    //查询所有套餐
+    List<Setmeal> findAll();
+
+    //查询套餐详情
+    Setmeal findDetailById(int id);
 }

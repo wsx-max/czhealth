@@ -56,4 +56,52 @@
     <select id="findImgs" resultType="string">
         select img from t_setmeal
     </select>
+
+    <select id="findAll" resultType="Setmeal">
+        select * from t_setmeal
+    </select>
+
+    <select id="findDetailById" parameterType="int" resultMap="setmealDetailResultMap">
+        SELECT sm.id, sm.name, sm.sex, sm.age,sm.remark,sm.img,
+        cc.id checkgroup_id,cc.name checkgroup_name,cc.remark checkgroup_remark,
+        ck.id checkitem_id,ck.name checkitem_name
+        from t_setmeal sm LEFT JOIN t_setmeal_checkgroup sc on sm.id = sc.setmeal_id
+        LEFT JOIN t_checkgroup cc on sc.checkgroup_id=cc.id
+        LEFT JOIN t_checkgroup_checkitem ct on cc.id = ct.checkgroup_id
+        LEFT JOIN t_checkitem ck on ct.checkitem_id = ck.id
+        WHERE sm.id = #{id}
+    </select>
+    <resultMap id="setmealDetailResultMap" type="Setmeal">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="age" column="age"/>
+        <result property="remark" column="remark"/>
+        <result property="img" column="img"/>
+        <collection property="checkGroups" ofType="CheckGroup">
+            <id property="id" column="checkgroup_id"/>
+            <result property="name" column="checkgroup_name"/>
+            <result property="remark" column="checkgroup_remark"/>
+            <collection property="checkItems" ofType="CheckItem">
+                <id property="id" column="checkitem_id"/>
+                <result property="name" column="checkitem_name"/>
+            </collection>
+        </collection>
+
+    </resultMap>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -21,4 +21,8 @@
         select * from t_ordersetting where orderDate between #{dateBegin} and #{dateEnd}
     </select>
 
+    <update id="editReservationsByOrderDate" parameterType="OrderSetting">
+        update t_ordersetting set reservations = reservations+1 where orderDate = #{orderDate} and number>reservations
+    </update>
+
 </mapper>

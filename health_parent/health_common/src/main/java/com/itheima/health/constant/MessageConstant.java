@@ -67,4 +67,5 @@ public interface MessageConstant {
     static final String GET_SETMEAL_LIST_SUCCESS = "查询套餐列表数据成功";
     static final String GET_SETMEAL_LIST_FAIL = "查询套餐列表数据失败";
     static final String CHECKITEM_IN_USE ="该检查项已被检查组使用" ;
+    static final String SENT_VALIDATECODE = "验证码已经发送了，请注意查收";
 }
