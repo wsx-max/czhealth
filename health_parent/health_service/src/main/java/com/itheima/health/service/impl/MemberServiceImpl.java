@@ -6,6 +6,9 @@ import com.itheima.health.pojo.Member;
 import com.itheima.health.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service(interfaceClass = MemberService.class)
 public class MemberServiceImpl implements MemberService {
     @Autowired
@@ -28,4 +31,28 @@ public class MemberServiceImpl implements MemberService {
     public void add(Member member) {
         memberDao.add(member);
     }
+
+    @Override
+    public List<Integer> getMemberReport(List<String> months) {
+        //遍历每一个月份，查询每一个月的会员数量
+        List<Integer> memberCountList = new ArrayList<>();
+        if (months != null){
+            for (String month : months) {
+                Integer count = memberDao.findMemberCountBeforeDate(month);
+                memberCountList.add(count);
+            }
+        }
+        return memberCountList;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

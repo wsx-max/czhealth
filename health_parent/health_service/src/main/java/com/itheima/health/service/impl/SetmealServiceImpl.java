@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Map;
 
 @Service(interfaceClass = SetmealService.class)
 public class SetmealServiceImpl implements SetmealService {
@@ -119,6 +120,11 @@ public class SetmealServiceImpl implements SetmealService {
     public Setmeal findDetailById(int id) {
         Setmeal detailById = setmealDao.findDetailById(id);
         return detailById;
+    }
+
+    @Override
+    public List<Map<String, Object>> findSetmealCount() {
+        return setmealDao.findSetmealCount();
     }
 }
 

@@ -8,6 +8,7 @@ import com.itheima.health.entity.QueryPageBean;
 import com.itheima.health.entity.Result;
 import com.itheima.health.pojo.CheckItem;
 import com.itheima.health.service.CheckItemService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,8 +55,10 @@ public class CheckItemController {
         return new Result(true,MessageConstant.QUERY_CHECKITEM_SUCCESS,checkItem);
     }
 
+
     //更新检查项
     @PostMapping("/update")
+    @PreAuthorize("hasAnyAuthority('CHECKITEM_EDIT')")
     public Result update(@RequestBody CheckItem checkItem){
         checkItemService.update(checkItem);
         return new Result(true,MessageConstant.EDIT_CHECKITEM_SUCCESS);
